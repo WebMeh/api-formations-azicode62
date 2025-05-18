@@ -21,12 +21,9 @@
   </div>
 
   <script>
-    function getIdFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('id');
-    }
+    
 
-    const id = getIdFromURL();
+    const id = params = new URLSearchParams(window.location.search).get('id');
     const container = document.getElementById('formation-details');
 
     fetch(`http://localhost:9000/formations/${id}`)
@@ -46,7 +43,7 @@
               <p><strong>Durée :</strong> ${formation.duree}</p>
 
               <div class="d-flex gap-3 mt-4">
-                <a href="modifier.html?id=${formation.id}" class="btn btn-warning">Modifier</a>
+                <a href="" class="btn btn-warning">Modifier</a>
                 <button onclick="supprimerFormation(${formation.id})" class="btn btn-danger">Supprimer</button>
               </div>
             </div>
@@ -62,16 +59,7 @@
       });
 
     function supprimerFormation(id) {
-      if (confirm("Voulez-vous vraiment supprimer cette formation ?")) {
-        fetch(`http://localhost:9000/formations/${id}`, {
-          method: 'DELETE'
-        })
-        .then(res => {
-          alert("Formation supprimée avec succès.");
-          window.location.href = "formations.html";
-        })
-        .catch(err => alert(err.message));
-      }
+      // A faire
     }
   </script>
 
